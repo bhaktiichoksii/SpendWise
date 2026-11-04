@@ -1,0 +1,248 @@
+
+.trusted-devices-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.trusted-devices-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.trusted-devices-heading h2 {
+  margin: 0 0 8px;
+  color: #32174d;
+  font-size: 22px;
+}
+
+.trusted-devices-heading p {
+  margin: 0;
+  color: #777080;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 650px;
+}
+
+.trusted-refresh-button {
+  padding: 10px 16px;
+  border: 1px solid #ded8e5;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #32174d;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.trusted-refresh-button:hover {
+  background: #f5f1f8;
+}
+
+.trusted-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trusted-security-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #e5dced;
+  border-radius: 12px;
+  background: #f8f5fb;
+}
+
+.trusted-security-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e9ddf2;
+  color: #542b70;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.trusted-security-note strong {
+  color: #32174d;
+  font-size: 14px;
+}
+
+.trusted-security-note p {
+  margin: 6px 0 0;
+  color: #756b7e;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.trusted-message {
+  padding: 12px 15px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.trusted-error {
+  background: #fff0ef;
+  color: #b42318;
+  border: 1px solid #f5ceca;
+}
+
+.trusted-success {
+  background: #edf8f0;
+  color: #247442;
+  border: 1px solid #ccebd5;
+}
+
+.trusted-device-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.trusted-device-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e9e4ed;
+  border-radius: 12px;
+}
+
+.trusted-device-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #f1ebf6;
+  color: #542b70;
+  font-size: 25px;
+}
+
+.trusted-device-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.trusted-device-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.trusted-device-title h3 {
+  margin: 0;
+  color: #32174d;
+  font-size: 15px;
+}
+
+.trusted-active-badge {
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: #eaf7ee;
+  color: #247442;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.trusted-device-name {
+  margin: 7px 0;
+  color: #756b7e;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.trusted-device-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: #89818f;
+  font-size: 12px;
+}
+
+.trusted-remove-button {
+  padding: 9px 15px;
+  border: 1px solid #f0c9c7;
+  border-radius: 8px;
+  background: #fff7f6;
+  color: #b42318;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.trusted-remove-button:hover {
+  background: #feeceb;
+}
+
+.trusted-remove-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trusted-empty {
+  padding: 45px 20px;
+  text-align: center;
+  border: 1px dashed #dcd4e3;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #756b7e;
+  font-size: 14px;
+}
+
+.trusted-empty-icon {
+  margin-bottom: 12px;
+  color: #806495;
+  font-size: 35px;
+}
+
+.trusted-empty h3 {
+  margin: 0 0 8px;
+  color: #32174d;
+}
+
+.trusted-empty p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.trusted-footer-note {
+  margin: 0;
+  color: #89818f;
+  font-size: 12px;
+}
+
+@media (max-width: 650px) {
+  .trusted-devices-heading {
+    flex-direction: column;
+  }
+
+  .trusted-device-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .trusted-device-details {
+    width: calc(100% - 64px);
+  }
+
+  .trusted-remove-button {
+    margin-left: 64px;
+  }
+
+  .trusted-device-dates {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

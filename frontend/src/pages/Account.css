@@ -1,0 +1,199 @@
+
+.account-page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px 0 30px;
+  color: #32174d;
+}
+
+.profile-account-card {
+  background: #ffffff;
+  border: 1px solid #e8e2ed;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 8px 28px rgba(50, 23, 77, 0.05);
+}
+
+.account-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.account-avatar {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eee7f6;
+  color: #563477;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.account-heading h2 {
+  margin: 0 0 7px;
+  font-size: 21px;
+}
+
+.account-heading p,
+.account-verification p {
+  margin: 0;
+  color: #7b7185;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.profile-account-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.profile-account-form label,
+.account-verification label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  color: #49365c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-account-form input,
+.account-verification input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid #ded5e8;
+  border-radius: 10px;
+  outline: none;
+  background: #fcfbfe;
+  color: #32174d;
+  font: inherit;
+  font-weight: 400;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.profile-account-form input:focus,
+.account-verification input:focus {
+  border-color: #8060a4;
+  box-shadow: 0 0 0 3px rgba(128, 96, 164, 0.12);
+}
+
+.profile-account-form button,
+.account-verification button {
+  min-height: 42px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 9px;
+  background: #563477;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.profile-account-form button:hover,
+.account-verification button:hover {
+  background: #43245f;
+}
+
+.profile-account-form button:disabled,
+.account-verification button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.account-divider {
+  height: 1px;
+  margin: 28px 0;
+  background: #eee8f3;
+}
+
+.account-help {
+  margin: 0;
+  color: #81758d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.account-verification {
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid #e5dbee;
+  border-radius: 13px;
+  background: #faf8fd;
+}
+
+.account-verification h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.account-verification p {
+  margin-bottom: 18px;
+}
+
+.account-verification label {
+  margin-bottom: 16px;
+}
+
+.account-verification input {
+  letter-spacing: 5px;
+  font-size: 18px;
+}
+
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.account-verification .account-secondary {
+  border: 1px solid #ded5e8;
+  background: #ffffff;
+  color: #563477;
+}
+
+.account-verification .account-secondary:hover {
+  background: #f1edf6;
+}
+
+@media (max-width: 600px) {
+  .account-page {
+    padding-top: 4px;
+  }
+
+  .profile-account-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .account-heading {
+    gap: 12px;
+  }
+
+  .account-heading h2 {
+    font-size: 18px;
+  }
+
+  .account-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 21px;
+  }
+
+  .account-actions button {
+    flex: 1;
+  }
+}

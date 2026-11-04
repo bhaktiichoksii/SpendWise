@@ -1,0 +1,134 @@
+
+.otp-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: #f2f0f5;
+}
+
+.otp-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 36px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(50, 23, 77, 0.10);
+  text-align: center;
+}
+
+.otp-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f0eaf6;
+  color: #32174d;
+  font-size: 30px;
+}
+
+.otp-card h2 {
+  margin: 0 0 12px;
+  color: #32174d;
+  font-size: 25px;
+}
+
+.otp-card > p {
+  margin: 0 0 26px;
+  color: #77717e;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.otp-card form {
+  text-align: left;
+}
+
+.otp-card label {
+  display: block;
+  margin-bottom: 9px;
+  color: #32174d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.otp-card input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid #ded9e5;
+  border-radius: 10px;
+  outline: none;
+  font-size: 20px;
+  letter-spacing: 8px;
+  text-align: center;
+  color: #32174d;
+}
+
+.otp-card input:focus {
+  border-color: #76518f;
+  box-shadow: 0 0 0 3px rgba(118, 81, 143, 0.12);
+}
+
+.otp-card form > button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #32174d;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.otp-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.otp-error,
+.otp-message {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.otp-error {
+  color: #c0392b;
+}
+
+.otp-message {
+  color: #218653;
+}
+
+.otp-resend {
+  margin-top: 22px;
+  color: #77717e;
+  font-size: 13px;
+}
+
+.otp-resend button,
+.otp-back {
+  border: none;
+  background: none;
+  color: #76518f;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.otp-back {
+  margin-top: 22px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .otp-card {
+    padding: 26px 20px;
+  }
+}

@@ -1,0 +1,25 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --ice-silver: #E8EDF2;
+  --deep-aubergine: #32174D;
+  --marigold: #F5B82E;
+  --main-text: #FFFFFF;
+  --muted-text: #BDB2C9;
+  --card-bg: #40245A;
+  --border-color: #593A70;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--deep-aubergine);
+  color: var(--main-text);
+}
+
+button {
+  font-family: inherit;
+}

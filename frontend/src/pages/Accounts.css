@@ -1,0 +1,302 @@
+
+.accounts-page {
+  width: 100%;
+  padding: 24px;
+  color: #32174D;
+  box-sizing: border-box;
+}
+
+.accounts-header {
+  margin-bottom: 24px;
+}
+
+.accounts-header h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+.accounts-header p,
+.account-form-card > p {
+  color: #82758F;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.account-form-card {
+  padding: 24px;
+  margin-bottom: 30px;
+  background: #FFFFFF;
+  border: 1px solid #E5E1EA;
+  border-radius: 14px;
+}
+
+.account-form-card h3,
+.saved-accounts-section h3 {
+  margin: 0 0 10px;
+}
+
+.account-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.account-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.account-form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #49365C;
+}
+
+.account-form-group input,
+.account-form-group select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  padding: 12px;
+  border: 1px solid #DCD5E5;
+  border-radius: 9px;
+  background: #FFFFFF;
+  color: #32174D;
+  font-size: 14px;
+  outline: none;
+}
+
+.account-form-group input:focus,
+.account-form-group select:focus {
+  border-color: #8060A4;
+  box-shadow: 0 0 0 3px rgba(128, 96, 164, 0.12);
+}
+
+.account-form button {
+  grid-column: 2;
+  justify-self: start;
+  align-self: end;
+  width: auto;
+  height: 40px;
+  min-height: 40px;
+  box-sizing: border-box;
+  padding: 0 18px;
+  border: none;
+  border-radius: 9px;
+  background: #32174D;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account-form button:hover {
+  background: #49236B;
+}
+
+.account-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Demo bank section */
+.account-form-card:first-of-type {
+  border-color: #D8CBE8;
+}
+
+.account-form-card:first-of-type .account-balance-note {
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.account-status {
+  padding: 6px 10px;
+  background: #FFF3D6;
+  color: #8A6100;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.account-message {
+  margin-top: 16px;
+  color: #32174D;
+  font-size: 14px;
+}
+
+.saved-accounts-section {
+  margin-top: 28px;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.account-card {
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E5E1EA;
+  border-radius: 14px;
+}
+
+.account-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.account-icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F0EAF6;
+  color: #32174D;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.account-card h4 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.account-card p {
+  margin: 6px 0;
+  color: #82758F;
+  font-size: 14px;
+}
+
+.account-number {
+  letter-spacing: 0.5px;
+}
+
+.account-balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 0;
+  margin-top: 16px;
+  border-top: 1px solid #E5E1EA;
+  font-size: 14px;
+}
+
+.account-balance strong {
+  color: #32174D;
+}
+
+.account-balance-edit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.account-balance-edit input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #DCD5E5;
+  border-radius: 8px;
+  color: #32174D;
+  outline: none;
+}
+
+.account-balance-edit input:focus {
+  border-color: #8060A4;
+  box-shadow: 0 0 0 3px rgba(128, 96, 164, 0.12);
+}
+
+.account-balance-edit button,
+.account-update-button {
+  padding: 9px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #32174D;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account-balance-edit button:hover,
+.account-update-button:hover {
+  background: #49236B;
+}
+
+.account-balance-edit button:last-child {
+  background: #F0EAF6;
+  color: #32174D;
+}
+
+.account-balance-edit button:last-child:hover {
+  background: #E5DCEC;
+}
+
+.account-update-button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.account-remove-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #FFFFFF;
+  color: #B42318;
+  border: 1px solid #F0C7C4;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.account-remove-button:hover {
+  background: #FFF1F0;
+}
+
+.account-balance-note {
+  display: block;
+  margin-top: 12px;
+  color: #82758F;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.accounts-empty {
+  padding: 24px;
+  margin-top: 16px;
+  background: #FFFFFF;
+  border: 1px dashed #DCD5E5;
+  border-radius: 12px;
+  color: #82758F;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .accounts-page {
+    padding: 16px;
+  }
+
+  .account-form,
+  .accounts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-form button {
+    grid-column: 1;
+  }
+
+  .account-form-card {
+    padding: 18px;
+  }
+}
