@@ -157,20 +157,29 @@ app.get("/", (req, res) => {
 });
 
 // Database health
+// Database health
+// Database health
 app.get("/api/health", async (req, res) => {
   try {
-    await pool.query("SELECT 1");
+    const [rows] = await pool.query(`
+      SELECT
+        DATABASE() AS database_name,
+        COUNT(*) AS users_table_exists
+      FROM information_schema.tables
+      WHERE table_schema = DATABASE()
+      AND table_name = 'users'
+    `);
 
     res.json({
       status: "OK",
-      database: "Connected"
+      database: rows[0].database_name,
+      usersTableExists: Number(rows[0].users_table_exists) === 1
     });
   } catch (error) {
     console.error("Database health error:", error.message);
 
     res.status(500).json({
-      status: "ERROR",
-      database: "Disconnected"
+      message: error.message
     });
   }
 });
