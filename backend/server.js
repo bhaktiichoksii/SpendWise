@@ -15,6 +15,7 @@ const reportRoutes = require("./reportRoutes");
 const shoppingRoutes = require("./shoppingRoutes");
 const bankRoutes = require("./bankRoutes");
 const categoryRoutes = require("./categoryRoutes");
+const forgotPasswordRoutes = require("./forgotPasswordRoutes");
 
 const deviceAuthRoutes = require("./deviceAuthRoutes");
 const googleAuthRoutes = require("./googleAuthRoutes");
@@ -38,8 +39,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-const fs = require("fs");
-
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT || 4000),
@@ -52,6 +51,12 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10
 });
+
+// Forgot Password routes
+const {
+  router: forgotPasswordRouter,
+  createResetTable
+} = forgotPasswordRoutes(pool);
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -94,7 +99,7 @@ app.use("/api/reports", reportRoutes(pool, authenticateToken));
 app.use("/api/shopping", shoppingRoutes(authenticateToken));
 app.use("/api/bank", bankRoutes(authenticateToken));
 
-// Existing login and trusted-device routes
+// Login and trusted-device routes
 app.use(
   "/api/auth",
   deviceAuthRoutes(pool, jwt, cookieOptions, authenticateToken)
@@ -104,6 +109,9 @@ app.use(
   "/api/auth",
   googleAuthRoutes(pool, jwt, cookieOptions)
 );
+
+// Forgot Password routes
+app.use("/api/auth", forgotPasswordRouter);
 
 // Account profile routes
 app.use(
@@ -387,7 +395,7 @@ app.get("/api/auth/me", authenticateToken, async (req, res) => {
   }
 });
 
-// Logout (preserves trusted-device cookie)
+// Logout
 app.post("/api/auth/logout", (req, res) => {
   res.clearCookie("spendwise_token", cookieOptions);
 
@@ -609,6 +617,9 @@ async function startServer() {
     await createTransactionsTable();
     await createBudgetsTable();
     await deviceHelpers.createDeviceTables(pool);
+
+    // Create Forgot Password OTP table
+    await createResetTable();
 
     app.listen(PORT, () => {
       console.log(`SpendWise backend running at http://localhost:${PORT}`);

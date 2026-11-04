@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Dashboard from "./Dashboard";
 import OtpVerification from "./pages/OtpVerification";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const API_URL = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth`;
 
@@ -78,14 +79,17 @@ function App() {
   const [toast, setToast] = useState(null);
   const [successPopup, setSuccessPopup] = useState(null);
 
-  // Check whether the user is already logged in.
+  // Show a notification.
+  function showToast(message, type = "error") {
+    setToast({ message, type });
+  }
+
   // Check login session and handle Google Sign-In result.
   useEffect(() => {
     async function checkSession() {
       const params = new URLSearchParams(window.location.search);
       const googleResult = params.get("google");
 
-      // Remove Google result from the browser URL.
       if (googleResult) {
         window.history.replaceState(
           {},
@@ -109,15 +113,12 @@ function App() {
         }
       } catch {
         if (googleResult === "success") {
-          showToast(
-            "Cannot connect to the server. Please try again."
-          );
+          showToast("Cannot connect to the server. Please try again.");
         }
       } finally {
         setCheckingSession(false);
       }
 
-      // Display Google Sign-In errors.
       const googleErrors = {
         cancelled: "Google Sign-In was cancelled.",
         invalid: "Google Sign-In verification failed. Please try again.",
@@ -134,11 +135,6 @@ function App() {
 
     checkSession();
   }, []);
-
-  // Show a notification.
-  function showToast(message, type = "error") {
-    setToast({ message, type });
-  }
 
   // Handle login and signup input changes.
   function handleChange(event) {
@@ -192,7 +188,6 @@ function App() {
         throw new Error(data.message || "Something went wrong.");
       }
 
-      // New device: ask the user to verify their email OTP.
       if (mode === "login" && data.requiresOtp === true) {
         setOtpRequired(true);
         return;
@@ -215,7 +210,6 @@ function App() {
           action: () => setSuccessPopup(null),
         });
       } else {
-        // Recognised device: login without OTP.
         setSuccessPopup({
           title: "Login Successful!",
           description: `Welcome back, ${data.user.name}! You're all set to manage your money smarter.`,
@@ -237,14 +231,17 @@ function App() {
     }
   }
 
-  // Google login is not connected yet.
+  // Google Sign-In.
   function handleGoogleSignIn() {
-    window.location.href = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/auth/google`;
+    window.location.href = `${
+      import.meta.env.VITE_API_URL || "http://localhost:5000"
+    }/api/auth/google`;
   }
 
-  // Password reset will be connected later.
+  // Open Forgot Password page.
   function handleForgotPassword() {
-    showToast("We'll connect password reset in the next step.", "info");
+    setMode("forgot");
+    setToast(null);
   }
 
   // Switch between login and signup.
@@ -275,6 +272,7 @@ function App() {
       setUser(null);
       setMode("login");
       setOtpRequired(false);
+
       setFormData({
         name: "",
         email: "",
@@ -291,7 +289,7 @@ function App() {
     }
   }
 
-  // Display a loading screen while checking the login session.
+  // Display loading screen.
   if (checkingSession) {
     return (
       <main
@@ -333,6 +331,18 @@ function App() {
         onUserUpdated={setUser}
         onLogout={handleLogout}
         onNotify={showToast}
+      />
+    );
+  }
+
+  // Show Forgot Password page.
+  if (mode === "forgot") {
+    return (
+      <ForgotPassword
+        onBack={() => {
+          setMode("login");
+          setToast(null);
+        }}
       />
     );
   }
