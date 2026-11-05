@@ -1,70 +1,55 @@
-const nodemailer = require("nodemailer");
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_APP_PASSWORD
+const SCRIPT_URL = process.env.SPENDWISE_SCRIPT_URL;
+const SPENDWISE_SECRET = process.env.SPENDWISE_SECRET;
+
+async function sendEmail(receiverEmail, otp, type) {
+  if (!SCRIPT_URL || !SPENDWISE_SECRET) {
+    throw new Error("SpendWise email service configuration is missing.");
   }
-});
+
+  const response = await fetch(SCRIPT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      secret: SPENDWISE_SECRET,
+      receiverEmail,
+      otp,
+      type
+    }),
+    signal: AbortSignal.timeout(20000)
+  });
+
+  if (!response.ok) {
+    throw new Error("Email service request failed.");
+  }
+
+  let result;
+
+  try {
+    result = await response.json();
+  } catch {
+    throw new Error("Invalid response from email service.");
+  }
+
+  if (!result.success) {
+    throw new Error(result.message || "Unable to send email.");
+  }
+
+  return result;
+}
 
 async function sendOtpEmail(receiverEmail, otp) {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
-    throw new Error("Email configuration is missing.");
-  }
-
-  await transporter.sendMail({
-    from: `"SpendWise Security" <${process.env.EMAIL_USER}>`,
-    to: receiverEmail,
-    subject: "Your SpendWise Verification Code",
-    text: `Your SpendWise verification code is ${otp}. It expires in 5 minutes.`,
-    html: `
-      <h2>SpendWise Security</h2>
-      <p>Your verification code is:</p>
-      <h1>${otp}</h1>
-      <p>This code expires in 5 minutes.</p>
-    `
-  });
+  return sendEmail(receiverEmail, otp, "register");
 }
 
 async function sendEmailChangeOtp(receiverEmail, otp) {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
-    throw new Error("Email configuration is missing.");
-  }
-
-  await transporter.sendMail({
-    from: `"SpendWise Security" <${process.env.EMAIL_USER}>`,
-    to: receiverEmail,
-    subject: "Verify Your New SpendWise Email",
-    text: `Your email change verification code is ${otp}. It expires in 5 minutes.`,
-    html: `
-      <h2>SpendWise Email Verification</h2>
-      <h1>${otp}</h1>
-      <p>This code expires in 5 minutes.</p>
-    `
-  });
+  return sendEmail(receiverEmail, otp, "email-change");
 }
 
 async function sendPasswordResetOtp(receiverEmail, otp) {
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
-    throw new Error("Email configuration is missing.");
-  }
-
-  await transporter.sendMail({
-    from: `"SpendWise Security" <${process.env.EMAIL_USER}>`,
-    to: receiverEmail,
-    subject: "Reset Your SpendWise Password",
-    text: `Your password reset code is ${otp}. It expires in 5 minutes. Do not share this code.`,
-    html: `
-      <div style="font-family: Arial; padding: 24px; color: #32174D;">
-        <h2>SpendWise Password Reset</h2>
-        <p>You requested to reset your password.</p>
-        <h1 style="letter-spacing: 8px;">${otp}</h1>
-        <p>This code expires in 5 minutes.</p>
-        <p>If you did not request this, ignore this email.</p>
-      </div>
-    `
-  });
+  return sendEmail(receiverEmail, otp, "password-reset");
 }
 
 module.exports = {
